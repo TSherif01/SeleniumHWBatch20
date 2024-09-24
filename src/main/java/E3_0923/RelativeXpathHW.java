@@ -36,22 +36,29 @@ public class RelativeXpathHW {
         api.sendKeys("Atl");
 
         //6. The user must use the **indexing technique** learned in class to enter email addresses.
-        WebElement emailType = driver.findElement(By.xpath("//input[@id='private_email_id']"));
-        Select select = new Select(emailType);
-        select.selectByIndex(0); // Selects "Personal Email"
-        emailType.sendKeys("name@PrivateEmail.com");
+        try {
+            WebElement pEmail= driver.findElement(By.xpath("(//input[@class='form-control backup'])[1]"));
+            pEmail.sendKeys("name@email.com");
+            WebElement oEmail= driver.findElement(By.xpath("(//input[@class='form-control backup'])[2]"));
+            oEmail.sendKeys("name@email.com");
+            WebElement proEmail= driver.findElement(By.xpath("(//input[@class='form-control backup'])[3]"));
+            proEmail.sendKeys("name@email.com");
+        } finally {
 
-        //7. The user must use the **operators technique** (e.g., `and`, `or`) to enter both the client name and client ID.
-        WebElement clientName = driver.findElement(By.xpath("//input[@id='clientName' and @data-detail='one']"));
-        clientName.sendKeys("jane dew");
+            //7. The user must use the **operators technique** (e.g., `and`, `or`) to enter both the client name and client ID.
+            WebElement clientName = driver.findElement(By.xpath("//input[@id='clientName' and @data-detail='one']"));
+            clientName.sendKeys("jane dew");
 
-        WebElement clientID = driver.findElement(By.xpath("//input[@id='clientId' and @data-detail='two']"));
-        clientID.sendKeys("jdew1");
+            WebElement clientID = driver.findElement(By.xpath("//input[@id='clientId' and @data-detail='two']"));
+            clientID.sendKeys("jdew1");
 
-        //8. The user can use **any XPath technique** to enter the street number and house number.
-        WebElement StrtNo = driver.findElement(By.xpath("//input[contains(@name,'StreetNo')]"));
-        StrtNo.sendKeys("123");
-        WebElement HouseNo = driver.findElement(By.xpath("//input[contains(@name,'HouseNo')]"));
-        HouseNo.sendKeys("456");
+            //8. The user can use **any XPath technique** to enter the street number and house number.
+            WebElement StrtNo = driver.findElement(By.xpath("//input[contains(@name,'StreetNo')]"));
+            StrtNo.sendKeys("123");
+            WebElement HouseNo = driver.findElement(By.xpath("//input[contains(@name,'HouseNo')]"));
+            HouseNo.sendKeys("456");
+
+            driver.quit();
+        }
     }
 }
