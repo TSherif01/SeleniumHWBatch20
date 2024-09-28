@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.List;
 
 public class CheckBoxes_hw {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
         driver.get("http://syntaxprojects.com/basic-checkbox-demo-homework.php");
@@ -36,12 +36,14 @@ public class CheckBoxes_hw {
         /*3. Select Your Interests:
         - Verify that the **Support** and **Music** checkboxes are not displayed by default.
         - Click on the "Show Checkboxes" button, and then select the **Music** checkbox.*/
-        WebElement show = driver.findElement(By.xpath("//button[@id='toggleCheckboxButtons']"));
-            show.click();
 
-        WebElement music = driver.findElement(By.xpath("//input[@type='checkbox'and@value='Music']"));
-        boolean stateOfmusic = music.isSelected();
-        if (!stateOfmusic) {
+        WebElement support = driver.findElement(By.xpath("//input[@value='Support']"));
+        WebElement music = driver.findElement(By.xpath("//input[@value='Music']"));
+
+        if(!support.isDisplayed() && !music.isDisplayed()){
+            WebElement show = driver.findElement(By.xpath("//button[@id='toggleCheckboxButtons']"));
+            show.click();
+            Thread.sleep(2000);
             music.click();
         }
         /*4. Preferences:
